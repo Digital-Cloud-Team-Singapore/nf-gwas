@@ -57,7 +57,9 @@ workflow NF_GWAS {
 
     genotyped_plink_ch = Channel.empty()
     if(!skip_predictions) {
-        
+        // problematic, assumes input has {} that needs to be expanded + * globbed
+        // this is most likely incompatible with AWS S3
+        // esp since it tries to verify the existence of these files
         genotyped_plink_ch = Channel.fromFilePairs(genotypes_prediction, size: 3, checkIfExists: true)
 
     }
