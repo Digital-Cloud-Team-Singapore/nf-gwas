@@ -28,8 +28,6 @@ jobs:
       - name:  trigger healthomics run
         run: |
           # prepare paths
-          # run ls ${{ github.workspace }}
-          ls ${{ github.workspace }}
           CLI_ARGS_JSON_PATH="${{ github.workspace }}/deploy/params_for_healthomics.json"
           RUN_PARAMS_JSON_PATH="${{ github.workspace }}/deploy/params_for_nextflow.json"
 
@@ -42,9 +40,9 @@ jobs:
           echo "Run Name: ${RUN_NAME}"
           echo "S3 Output URI: ${S3_OUTPUT_URI}"
 
-          # run the aws CLI
+          # run the aws CLI, ensure no whitespace after each \
           RUN_ID=$(aws omics start-run \
-            --name ${RUN_NAME} \      
+            --name ${RUN_NAME} \
             --workflow-id ${WORKFLOW_ID} \
             --parameters file://${RUN_PARAMS_JSON_PATH} \
             --output-uri ${S3_OUTPUT_URI} \
