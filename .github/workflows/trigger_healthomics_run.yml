@@ -35,6 +35,7 @@ jobs:
           WORKFLOW_ID=$(jq -r '.workflow_id' ${CLI_ARGS_JSON_PATH})
           RUN_NAME=$(jq -r '.run_name' ${CLI_ARGS_JSON_PATH})
           S3_OUTPUT_URI=$(jq -r '.s3_output_uri' ${CLI_ARGS_JSON_PATH})
+          x
           # logging
           echo "Workflow ID: ${WORKFLOW_ID}"
           echo "Run Name: ${RUN_NAME}"
@@ -47,4 +48,10 @@ jobs:
             --parameters file://${RUN_PARAMS_JSON_PATH} \
             --output-uri ${S3_OUTPUT_URI} \
             --role-arn arn:aws:iam::549164395270:role/omics_start_run_role_v1 | jq -r '.id')
-          echo "Run ID: ${RUN_ID}"
+          
+          # check status of run
+          if [ -z "${RUN_ID}" ]; then
+            echo "Trigger run fail!"
+            exit 1
+          fi
+          echo "Trigger run success, run ID: ${RUN_ID}"
