@@ -1,0 +1,15 @@
+{
+    "project": "test-gwas-additive-2chromosomes",
+    "genotypes_prediction" : "s3://precise-nf-gwas/test_data/test_gwas_additive_chunking/example.{bim,bed,fam}",
+    "genotypes_association": "s3://precise-nf-gwas/test_data/test_gwas_additive_chunking/example*.bgen",
+    "genotypes_build": "hg19",
+    "genotypes_association_format": "bgen",
+    "phenotypes_filename": "s3://precise-nf-gwas/test_data/test_gwas_additive_chunking/phenotype.txt",
+    "phenotypes_binary_trait": false,
+    "phenotypes_columns" : "Y1,Y2",
+    "genotypes_association_chunk_size": 500000,
+    "regenie_test": "additive",
+    "rsids_filename": "s3://precise-nf-gwas/test_data/test_gwas_additive_chunking/rsids.tsv.gz",
+    "annotation_min_log10p": 2
+}
+

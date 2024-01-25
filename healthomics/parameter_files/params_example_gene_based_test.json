@@ -1,0 +1,27 @@
+{
+    "project": {"description": "project",
+                "optional": false},
+    "genotypes_prediction" : {"description": "genotypes_prediction",
+                "optional": true},
+    "genotypes_association": {"description": "genotypes_association",
+            "optional": false},
+    "genotypes_build": {"description": "genotypes_build",
+            "optional": false},
+    "genotypes_association_format": {"description": "genotypes_association_formats",
+            "optional": false},
+    "phenotypes_filename": {"description": "phenotypes_filename",
+            "optional": false},
+    "phenotypes_binary_trait": {"description": "phenotypes_binary_trait",
+            "optional": false},
+    "phenotypes_columns" : {"description": "phenotypes_columns",
+                "optional": false},
+    "genotypes_association_chunk_size": {"description": "genotypes_association_chunk_size",
+            "optional": true},
+    "regenie_test": {"description": "regenie_test",
+            "optional": false},
+    "rsids_filename": {"description": "rsids_filename",
+            "optional": false},
+    "annotation_min_log10p": {"description": "annotation_min_log10p",
+            "optional": true}
+}
+
