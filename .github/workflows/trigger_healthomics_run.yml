@@ -24,10 +24,14 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
       - name:  trigger healthomics run
         run: |
+          # prepare paths
+          CLI_ARGS_JSON_PATH="${{ github.workspace }}/deploy/params_for_healthomics.json"
+          RUN_PARAMS_JSON_PATH="${{ github.workspace }}/deploy/params_for_nextflow.json"
+
           # parse args
-          WORKFLOW_ID=$(jq -r '.workflow_id' ./deploy/params_for_healthomics.json)
-          RUN_NAME=$(jq -r '.run_name' ./deploy/params_for_healthomics.json)
-          S3_OUTPUT_URI=$(jq -r '.s3_output_uri' ./deploy/params_for_healthomics.json)
+          WORKFLOW_ID=$(jq -r '.workflow_id' ${CLI_ARGS_JSON_PATH})
+          RUN_NAME=$(jq -r '.run_name' ${CLI_ARGS_JSON_PATH})
+          S3_OUTPUT_URI=$(jq -r '.s3_output_uri' ${CLI_ARGS_JSON_PATH})
           # logging
           echo "Workflow ID: ${WORKFLOW_ID}"
           echo "Run Name: ${RUN_NAME}"
@@ -37,7 +41,7 @@ jobs:
           RUN_ID=$(aws omics start-run \
             --name ${RUN_NAME} \      
             --workflow-id ${WORKFLOW_ID} \
-            --parameters file://deploy/params_for_nextflow.json \
+            --parameters file://${RUN_PARAMS_JSON_PATH} \
             --output-uri ${S3_OUTPUT_URI} \
             --role-arn arn:aws:iam::549164395270:role/omics_start_run_role_v1 | jq -r '.id')
           echo "Run ID: ${RUN_ID}"
