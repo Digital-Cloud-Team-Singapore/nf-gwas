@@ -1,8 +1,7 @@
 name: Trigger Healthomics run
+
 on:
-  push:
-    branches:
-      - production
+  push
 
 env:
   AWS_REGION : "ap-southeast-1"
@@ -11,10 +10,11 @@ env:
 permissions:
   id-token: write   # This is required for requesting the JWT
   contents: read    # This is required for actions/checkout
-  
+
 jobs:
-  TriggerHealthomicsRun:
+  deploy:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/production'
     steps:
       - name: configure aws credentials with OICD
         uses: aws-actions/configure-aws-credentials@v3
@@ -22,22 +22,22 @@ jobs:
           role-to-assume: arn:aws:iam::549164395270:role/github-actions-admin-role
           role-session-name: github_ci_trigger_healthomics
           aws-region: ${{ env.AWS_REGION }}
-      - name:  trigger the healthomics run
+      - name:  trigger healthomics run
         run: |
-        # parse args
-        WORKFLOW_ID=$(jq -r '.workflow_id' ./deploy/params_for_healthomics.json)
-        RUN_NAME=$(jq -r '.run_name' ./deploy/params_for_healthomics.json)
-        S3_OUTPUT_URI=$(jq -r '.s3_output_uri' ./deploy/params_for_healthomics.json)
-        # logging
-        echo "Workflow ID: ${WORKFLOW_ID}"
-        echo "Run Name: ${RUN_NAME}"
-        echo "S3 Output URI: ${S3_OUTPUT_URI}"
+          # parse args
+          WORKFLOW_ID=$(jq -r '.workflow_id' ./deploy/params_for_healthomics.json)
+          RUN_NAME=$(jq -r '.run_name' ./deploy/params_for_healthomics.json)
+          S3_OUTPUT_URI=$(jq -r '.s3_output_uri' ./deploy/params_for_healthomics.json)
+          # logging
+          echo "Workflow ID: ${WORKFLOW_ID}"
+          echo "Run Name: ${RUN_NAME}"
+          echo "S3 Output URI: ${S3_OUTPUT_URI}"
 
-        # run the aws CLI
-        RUN_ID=$(aws omics start-run \
-          --name ${RUN_NAME} \      
-          --workflow-id ${WORKFLOW_ID} \
-          --parameters file://deploy/params_for_nextflow.json \
-          --output-uri ${S3_OUTPUT_URI} \
-          --role-arn arn:aws:iam::549164395270:role/omics_start_run_role_v1 | jq -r '.id')
-        echo "Run ID: ${RUN_ID}"
+          # run the aws CLI
+          RUN_ID=$(aws omics start-run \
+            --name ${RUN_NAME} \      
+            --workflow-id ${WORKFLOW_ID} \
+            --parameters file://deploy/params_for_nextflow.json \
+            --output-uri ${S3_OUTPUT_URI} \
+            --role-arn arn:aws:iam::549164395270:role/omics_start_run_role_v1 | jq -r '.id')
+          echo "Run ID: ${RUN_ID}"
