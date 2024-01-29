@@ -35,7 +35,7 @@ jobs:
           WORKFLOW_ID=$(jq -r '.workflow_id' ${CLI_ARGS_JSON_PATH})
           RUN_NAME=$(jq -r '.run_name' ${CLI_ARGS_JSON_PATH})
           S3_OUTPUT_URI=$(jq -r '.s3_output_uri' ${CLI_ARGS_JSON_PATH})
-          x
+          
           # logging
           echo "Workflow ID: ${WORKFLOW_ID}"
           echo "Run Name: ${RUN_NAME}"
