@@ -1,5 +1,5 @@
 {
-    "workflow_id": 6344418,
-    "run_name": "nf_gwas_skipped_predictions_v3_test",
-    "s3_output_uri": "s3://precise-nf-gwas/output/test_skipped_predictions/"
+    "workflow_id": 8912698,
+    "run_name": "gene_based_test_v1",
+    "s3_output_uri": "s3://precise-nf-gwas/output/gene_based_test_v1/"
 }
