@@ -9,6 +9,4 @@
         "regenie_test": "additive",
         "rsids_filename": "s3://precise-nf-gwas/test_data/test_gwas_additive_chunking/rsids.tsv.gz",
         "regenie_skip_predictions": true
-    }
-    
-    
+}
