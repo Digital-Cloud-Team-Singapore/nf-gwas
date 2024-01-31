@@ -57,6 +57,7 @@ workflow SINGLE_VARIANT_TESTS {
     genotyped_filtered_id_ch = Channel.empty()
    
     if (!skip_predictions) {
+        // use predictions data
 
         QUALITY_CONTROL(genotyped_plink_ch)
         genotyped_final_ch = QUALITY_CONTROL.out.genotyped_filtered_files_ch
