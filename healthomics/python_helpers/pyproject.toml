@@ -12,6 +12,7 @@ bokeh = "2.4.3"
 pandas = "^2.2.0"
 requests = "^2.31.0"
 jupyter = "^1.0.0"
+tqdm = "^4.66.1"
 
 
 [build-system]
