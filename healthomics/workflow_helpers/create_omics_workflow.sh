@@ -1,19 +1,12 @@
 #!/bin/bash
 
-# run this from repo root
-# example command:
-# bash ./healthomics/create_omics_workflow.sh \
-#   gwas_gene_based_test \
-#   precise-nf-gwas \
-#   file://healthomics/parameter_files/params_template_gene_based_test.json
+# NOTE: RUN FROM REPO ROOT
+# bash ./healthomics/workflow_helpers/create_omics_workflow.sh
 
-# user args from CLI (or modify this file)
-# WORKFLOW_NAME=$1
-# S3_BUCKET=$2
-# PARAM_TEMPLATE=$3
-WORKFLOW_NAME="gwas_gene_based_test"
+# user args to be modified
+WORKFLOW_NAME="gwas_big_data_test_192cpus"
 S3_BUCKET="precise-nf-gwas"
-PARAM_TEMPLATE="file://healthomics/parameter_files/params_template_gene_based_test.json"
+PARAM_TEMPLATE="file://healthomics/parameter_files/params_template_skipped_predictions.json"
 
 # verify user args
 echo "Creating workflow ${WORKFLOW_NAME}"
@@ -24,7 +17,7 @@ echo "s3://${S3_BUCKET}/workflows/${WORKFLOW_NAME}.zip"
 
 # zip folder, exclude the folder healthomics/ as it doesnt have nextflow code
 cd ..
-# zip -r ${WORKFLOW_NAME}.zip nf-gwas/ -x "healthomics/*" > /dev/null
+zip -r ${WORKFLOW_NAME}.zip ./nf-gwas/ -x "./nf-gwas/healthomics/*" > /dev/null
 
 # upload workflow code to S3 bucket
 aws s3 cp ${WORKFLOW_NAME}.zip s3://${S3_BUCKET}/workflows/${WORKFLOW_NAME}.zip

@@ -1,9 +1,10 @@
 #!/bin/bash
 
+# would cost max $60
 RUNGROUP_ID=$(aws omics create-run-group \
-    --name BigRunGroupV1 \
+    --name BigRunGroup_300mins_200cpus \
     --max-cpus 200 \
-    --max-duration 6000 \
+    --max-duration 300 \
     | jq -r '.id')
 
 echo "Run group ID: ${RUNGROUP_ID}"
