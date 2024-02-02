@@ -1,12 +1,12 @@
 {
-        "project": "big_skip_preds_0",
-        "genotypes_association" : "s3://precise-nf-gwas/big_data/example_big.vcf.gz",
+        "project": "1mil_variants_50k_samples_192cpus_0",
+        "genotypes_association" : "s3://precise-nf-gwas/big_data/example_bigger.vcf.gz",
         "genotypes_build": "hg19",
         "genotypes_association_format": "vcf",
-        "phenotypes_filename": "s3://precise-nf-gwas/big_data/phenotype_big_0.txt",
+        "phenotypes_filename": "s3://precise-nf-gwas/big_data/phenotype_biggest_20_0.txt",
         "phenotypes_binary_trait": false,
-        "phenotypes_columns" : "Y1",
+        "phenotypes_columns" : "Y1,Y2,Y3,Y4,Y5,Y6,Y7,Y8,Y9,Y10,Y11,Y12,Y13,Y14,Y15,Y16,Y17,Y18,Y19,Y20",
         "regenie_test": "additive",
-        "rsids_filename": "s3://precise-nf-gwas/test_data/test_gwas_additive_chunking/rsids.tsv.gz",
+        "rsids_filename": "s3://precise-nf-gwas/big_data/rsids_big.tsv.gz",
         "regenie_skip_predictions": true
     }
