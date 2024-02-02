@@ -1,7 +1,9 @@
 #!/bin/bash
 
+python3 compute_pricing.py 8731550 --region ap-southeast-1
+
 # below run had 500 variants for a single phenotype (non-binary)
-python3 compute_pricing.py 2567603 --region ap-southeast-1
+# python3 compute_pricing.py 2567603 --region ap-southeast-1
 
 # should get the below:
 # {
