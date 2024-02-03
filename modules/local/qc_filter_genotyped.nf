@@ -8,12 +8,6 @@ process QC_FILTER_GENOTYPED {
     file genotyped_plink_file_bim
     file genotyped_plink_file_fam
 
-    output:
-    path "${genotyped_plink_filename}.qc.log"
-    path "${genotyped_plink_filename}.qc.snplist", emit: genotyped_filtered_snplist_ch
-    path "${genotyped_plink_filename}.qc.id", emit: genotyped_filtered_id_ch
-    tuple val("${genotyped_plink_filename}.qc"), path("${genotyped_plink_filename}.qc.bim"), path("${genotyped_plink_filename}.qc.bed"),path("${genotyped_plink_filename}.qc.fam"), emit: genotyped_filtered_files_ch
-
     script:
     def genotyped_plink_filename = genotyped_plink_file_bed.baseName
     // inside script, must always include backslash before any parentheses!
@@ -33,4 +27,14 @@ process QC_FILTER_GENOTYPED {
         --threads ${task.cpus} \
         --memory ${task.memory.toMega()}
     """
+
+    // suspicion: need to move output section to below script?? lol
+    // it might not be recognising the value of genotyped_plink_filename
+    // tried that, still didn't work. just replace directly with baseName
+    output:
+    path "${genotyped_plink_file_bed.baseName}.qc.log"
+    path "${genotyped_plink_file_bed.baseName}.qc.snplist", emit: genotyped_filtered_snplist_ch
+    path "${genotyped_plink_file_bed.baseName}.qc.id", emit: genotyped_filtered_id_ch
+    tuple val("${genotyped_plink_file_bed.baseName}.qc"), path("${genotyped_plink_file_bed.baseName}.qc.bim"), path("${genotyped_plink_file_bed.baseName}.qc.bed"),path("${genotyped_plink_file_bed.baseName}.qc.fam"), emit: genotyped_filtered_files_ch
+
 }
