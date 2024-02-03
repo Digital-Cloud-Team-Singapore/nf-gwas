@@ -4,9 +4,10 @@
 # bash ./healthomics/workflow_helpers/create_omics_workflow.sh
 
 # user args to be modified
-WORKFLOW_NAME="gwas_big_data_test_192cpus"
+WORKFLOW_NAME="gwas_test_bothsteps_v1"
 S3_BUCKET="precise-nf-gwas"
-PARAM_TEMPLATE="file://healthomics/parameter_files/params_template_skipped_predictions.json"
+PARAM_TEMPLATE="file://healthomics/parameter_files/params_template_additive.json"
+# PARAM_TEMPLATE="file://healthomics/parameter_files/params_template_skipped_predictions.json"
 
 # verify user args
 echo "Creating workflow ${WORKFLOW_NAME}"

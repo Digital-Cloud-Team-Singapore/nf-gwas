@@ -32,8 +32,8 @@ tabix -f -s 1 -b 2 -e 2 -S 1 ./data/rsids_big.tsv.gz
 aws s3 cp ./data/rsids_big.tsv.gz.tbi s3://precise-nf-gwas/big_data/
 
 # make .bed / .bim / .fam files with plink2
-~/plink2_bin/plink2 --vcf ./data/example_bigger.vcf.gz --make-bed --out ./data/example_bigger
+~/plink2_bin/plink2 --vcf ./data/example_big.vcf.gz --make-bed --out ./data/example_big
 # upload
-aws s3 cp ./data/example_bigger.bed s3://precise-nf-gwas/big_data/
-aws s3 cp ./data/example_bigger.bim s3://precise-nf-gwas/big_data/
-aws s3 cp ./data/example_bigger.fam s3://precise-nf-gwas/big_data/
+aws s3 cp ./data/example_big.bed s3://precise-nf-gwas/big_data/
+aws s3 cp ./data/example_big.bim s3://precise-nf-gwas/big_data/
+aws s3 cp ./data/example_big.fam s3://precise-nf-gwas/big_data/
