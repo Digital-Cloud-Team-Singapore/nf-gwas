@@ -79,6 +79,7 @@ workflow SINGLE_VARIANT_TESTS {
             
     }
        
+    // the linear/logistic regression to identify associations btwn each phenotype & genotypes
     REGENIE (
         genotyped_final_ch,
         genotyped_filtered_snplist_ch,
@@ -99,7 +100,8 @@ workflow SINGLE_VARIANT_TESTS {
     regenie_step1_parsed_logs_ch = Channel.empty()
 
     if (!run_interaction_tests) {
-
+        // annotate variants in results
+        // e.g. place them into context of gene structure and/or function
         ANNOTATION (
             regenie_step2_out,
             association_build  
@@ -112,15 +114,20 @@ workflow SINGLE_VARIANT_TESTS {
 
     }
         
+    // merge results across phenotypes (if more than 1 was given)
     MERGE_RESULTS (
         regenie_step2_by_phenotype.groupTuple()
     )
 
+    // https://genome.sph.umich.edu/wiki/LiftOver#:~:text=From%20Genome%20Analysis%20Wiki,assembly%20to%20another%20genome%20assembly
+    // bring all genetic analysis to the same reference build
+    // e.g. convert genome position from one assembly to another genome assembly
     LIFT_OVER (
         MERGE_RESULTS.out.results_merged_regenie_only,
         association_build
     )
 
+    // filter rows with insignificant p value (i think)
     FILTER_RESULTS (
         MERGE_RESULTS.out.results_merged
     )
