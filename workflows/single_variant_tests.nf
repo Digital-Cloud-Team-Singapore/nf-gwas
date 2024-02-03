@@ -17,7 +17,9 @@ workflow SINGLE_VARIANT_TESTS {
     imputed_files_ch
     phenotypes_file
     covariates_file
-    genotyped_plink_ch
+    genotyped_plink_file_bed,
+    genotyped_plink_file_bim,
+    genotyped_plink_file_fam,
     association_build
     genotypes_association_format
     condition_list_file
@@ -57,9 +59,13 @@ workflow SINGLE_VARIANT_TESTS {
     genotyped_filtered_id_ch = Channel.empty()
    
     if (!skip_predictions) {
-        // use predictions data
+        // run step 1 of REGENIE & use predictions to help with step 2 of REGENIE
 
-        QUALITY_CONTROL(genotyped_plink_ch)
+        QUALITY_CONTROL(
+            genotyped_plink_file_bed,
+            genotyped_plink_file_bim,
+            genotyped_plink_file_fam
+        )
         genotyped_final_ch = QUALITY_CONTROL.out.genotyped_filtered_files_ch
         genotyped_filtered_snplist_ch = QUALITY_CONTROL.out.genotyped_filtered_snplist_ch
         genotyped_filtered_id_ch = QUALITY_CONTROL.out.genotyped_filtered_id_ch
