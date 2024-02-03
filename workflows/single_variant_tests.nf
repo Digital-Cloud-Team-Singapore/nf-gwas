@@ -17,9 +17,9 @@ workflow SINGLE_VARIANT_TESTS {
     imputed_files_ch
     phenotypes_file
     covariates_file
-    genotyped_plink_file_bed,
-    genotyped_plink_file_bim,
-    genotyped_plink_file_fam,
+    genotyped_plink_file_bed
+    genotyped_plink_file_bim
+    genotyped_plink_file_fam
     association_build
     genotypes_association_format
     condition_list_file
