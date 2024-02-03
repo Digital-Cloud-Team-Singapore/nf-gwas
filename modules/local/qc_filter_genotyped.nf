@@ -3,7 +3,10 @@ process QC_FILTER_GENOTYPED {
     publishDir "${params.pubDir}/logs", mode: 'copy', pattern: '*.qc.log'
 
     input:
-    tuple val(genotyped_plink_filename), path(genotyped_plink_file)
+    // tuple val(genotyped_plink_filename), path(genotyped_plink_file)
+    file genotyped_plink_file_bed
+    file genotyped_plink_file_bim
+    file genotyped_plink_file_fam
 
     output:
     path "${genotyped_plink_filename}.qc.log"
@@ -11,7 +14,9 @@ process QC_FILTER_GENOTYPED {
     path "${genotyped_plink_filename}.qc.id", emit: genotyped_filtered_id_ch
     tuple val("${genotyped_plink_filename}.qc"), path("${genotyped_plink_filename}.qc.bim"), path("${genotyped_plink_filename}.qc.bed"),path("${genotyped_plink_filename}.qc.fam"), emit: genotyped_filtered_files_ch
 
-
+    script:
+    def genotyped_plink_filename = genotyped_plink_file_bed.baseName
+    // inside script, must always include backslash before any parentheses!
     """
     plink2 \
         --bfile ${genotyped_plink_filename} \
