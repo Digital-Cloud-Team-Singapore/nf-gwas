@@ -50,5 +50,9 @@
         "annotation_min_log10p": {
                 "description": "annotation_min_log10p",
                 "optional": false
+        },
+        "qc_hwe": {
+                "description": "qc_hwe",
+                "optional": false
         }
 }

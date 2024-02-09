@@ -1,0 +1,16 @@
+{
+    "project": "additive_bothsteps_malay",
+    "genotypes_prediction_bed": "s3://precise-nf-gwas/ethnic_data/100000_variants_15000_samples_5_chromosomes_malay_ethnicity.bed",
+    "genotypes_prediction_bim": "s3://precise-nf-gwas/ethnic_data/100000_variants_15000_samples_5_chromosomes_malay_ethnicity.bim",
+    "genotypes_prediction_fam": "s3://precise-nf-gwas/ethnic_data/100000_variants_15000_samples_5_chromosomes_malay_ethnicity.fam",
+    "genotypes_association" : "s3://precise-nf-gwas/ethnic_data/100000_variants_15000_samples_5_chromosomes_malay_ethnicity.vcf.gz",
+    "genotypes_build": "hg19",
+    "genotypes_association_format": "vcf",
+    "phenotypes_filename": "s3://precise-nf-gwas/ethnic_data/phenotype_15000_samples_100cols_malay_ethnicity_0.txt",
+    "phenotypes_binary_trait": false,
+    "phenotypes_columns" : "diabetes_susceptibility_TCF7L3,diabetes_susceptibility_TCF7L4,cancer_susceptibility_TP54,facial_morphology_AXIN2,cognitive_performance_NTRK1,circadian_rhythm_PER2,leptin_resistance_A829C,blood_pressure_RS1711,lipid_metabolism_LPL-94C>T,amino_acid_metabolism_GATM-23G>A,sugar_metabolism_HNF1A-177G>C,memory_performance_BDNF,attention_span_DRD4-7R,intelligence_CMIP,cardiovascular_risk_9p21,diabetes_susceptibility_TCF7L2,cancer_susceptibility_TP53,sleep_duration_DEC2,morning_activity_PER3,evening_activity_CRY1,bone_density_OPN-660T>C,muscle_mass_ACTN3-R577X,hair_texture_HH-116G>A,earlobe_attachment_RS7794745,taste_preference_TAS2R38-PAV,olive_oil_sensitivity_OLE1,caffeine_metabolism_CYP1A2-163C>A,vitamin_d_metabolism_VDR-2228570",
+    "regenie_test": "additive",
+    "rsids_filename": "s3://precise-nf-gwas/ethnic_data/rsids_100000_variants_5_chromosomes.tsv.gz",
+    "annotation_min_log10p": 2,
+    "qc_hwe": "0"
+}
