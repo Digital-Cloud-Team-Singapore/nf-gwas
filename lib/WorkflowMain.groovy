@@ -52,8 +52,11 @@ class WorkflowMain {
         exit 1, "Parameter genotypes_association_format is required."
     }
 
-    if(params["genotypes_array"] == null && params["genotypes_prediction"] == null && !params.regenie_skip_predictions ) {
-        exit 1, "Parameter genotypes_prediction is required."
+    // if(params["genotypes_array"] == null && params["genotypes_prediction"] == null && !params.regenie_skip_predictions ) {
+    //     exit 1, "Parameter genotypes_prediction is required."
+    // }
+    if(params["genotypes_prediction_bed"] == null && params["genotypes_prediction_bim"] == null && params["genotypes_prediction_fam"] == null && !params.regenie_skip_predictions ) {
+        exit 1, "Parameters genotypes_prediction_{bed,bim,fam} are required."
     }
 
     if(params["covariates_filename"] != null && (params.covariates_columns.isEmpty() && params.covariates_cat_columns.isEmpty())) {
