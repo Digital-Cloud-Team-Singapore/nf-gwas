@@ -31,10 +31,8 @@ workflow NF_GWAS {
     def genotypes_prediction_bim = params.genotypes_prediction_bim
     def genotypes_prediction_fam = params.genotypes_prediction_fam
     if(params.genotypes_array){
-        // raise an error and exit
-        throw new Exception("ERROR: Option genotypes_array is deprecated. Please use genotypes_prediction instead.")
-        // genotypes_prediction = params.genotypes_array
-        // println ANSI_YELLOW +  "WARN: Option genotypes_array is deprecated. Please use genotypes_prediction instead." + ANSI_RESET
+        println ANSI_RESET +  "ERROR: Option genotypes_array is deprecated. Please use genotypes_prediction instead." + ANSI_RESET
+        exit 1
     }
 
     def association_build = params.association_build
@@ -74,6 +72,7 @@ workflow NF_GWAS {
         genotyped_plink_file_bed = file(genotypes_prediction_bed, checkIfExists: true)
         genotyped_plink_file_bim = file(genotypes_prediction_bim, checkIfExists: true)
         genotyped_plink_file_fam = file(genotypes_prediction_fam, checkIfExists: true)
+        // TODO: convert these into channel.fromPath() maybe it will fix hanging issue
 
     }
 
