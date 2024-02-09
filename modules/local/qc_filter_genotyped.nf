@@ -18,11 +18,11 @@ process QC_FILTER_GENOTYPED {
     tuple val("${genotyped_plink_file_bed.baseName}.qc"), path("${genotyped_plink_file_bed.baseName}.qc.bim"), path("${genotyped_plink_file_bed.baseName}.qc.bed"),path("${genotyped_plink_file_bed.baseName}.qc.fam"), emit: genotyped_filtered_files_ch
 
     script:
-    def genotyped_plink_filename = genotyped_plink_file_bed.baseName
+    // def genotyped_plink_filename = genotyped_plink_file_bed.baseName
     // inside script, must always include backslash before any parentheses!
     """
     plink2 \
-        --bfile ${genotyped_plink_filename} \
+        --bfile ${genotyped_plink_file_bed.baseName} \
         --maf ${params.qc_maf} \
         --mac ${params.qc_mac} \
         --geno ${params.qc_geno} \
@@ -31,7 +31,7 @@ process QC_FILTER_GENOTYPED {
         --write-snplist \
         --write-samples \
         --no-id-header \
-        --out ${genotyped_plink_filename}.qc \
+        --out ${genotyped_plink_file_bed.baseName}.qc \
         --make-bed \
         --threads ${task.cpus} \
         --memory ${task.memory.toMega()}
