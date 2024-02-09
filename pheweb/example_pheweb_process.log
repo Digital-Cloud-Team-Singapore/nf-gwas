@@ -1,0 +1,63 @@
+(aws-py3.10) minhtoo.lin@SGMM2M0WY7WMTC3 test_ethnic_v1 % pheweb process
+==> Starting `pheweb phenolist verify`
+The 8 phenotypes in '/Users/minhtoo.lin/repos/nf-gwas/healthomics/pheweb/test_ethnic_v1/pheno-list.json' look good.
+==> Completed in 0 seconds
+
+==> Starting `pheweb parse-input-files`
+Output files are all newer than input files, so there's nothing to do.
+==> Completed in 0 seconds
+
+==> Starting `pheweb sites`
+The list of sites is up-to-date!
+==> Completed in 0 seconds
+
+==> Starting `pheweb make-gene-aliases-sqlite3`
+==> Completed in 0 seconds
+
+==> Starting `pheweb add-rsids`
+==> Completed in 7 minutes
+
+==> Starting `pheweb add-genes`
+==> Completed in 0 seconds
+
+==> Starting `pheweb make-cpras-rsids-sqlite3`
+Done making cpras-rsids sqlite3 at /Users/minhtoo.lin/repos/nf-gwas/healthomics/pheweb/test_ethnic_v1/generated-by-pheweb/sites/cpras-rsids.sqlite3
+==> Completed in 0 seconds
+
+==> Starting `pheweb augment-phenos`
+Processing 8 phenos
+Completed    8 tasks in 1 seconds                                     
+==> Completed in 1 seconds
+
+==> Starting `pheweb matrix`
+tabixing matrix
+==> Completed in 0 seconds
+
+==> Starting `pheweb gather-pvalues-for-each-gene`
+Completed 1792 tasks in 1 seconds                                       
+Done making best-pheno-for-each-gene at /Users/minhtoo.lin/repos/nf-gwas/healthomics/pheweb/test_ethnic_v1/generated-by-pheweb/best-phenos-by-gene.sqlite3
+==> Completed in 1 seconds
+
+==> Starting `pheweb manhattan`
+Processing 8 phenos
+Completed    8 tasks in 0 seconds                                    
+==> Completed in 0 seconds
+
+==> Starting `pheweb top-hits`
+wrote 1 hits to /Users/minhtoo.lin/repos/nf-gwas/healthomics/pheweb/test_ethnic_v1/generated-by-pheweb/top_hits.json
+wrote 1 hits to /Users/minhtoo.lin/repos/nf-gwas/healthomics/pheweb/test_ethnic_v1/generated-by-pheweb/top_hits_1k.json
+wrote 1 hits to /Users/minhtoo.lin/repos/nf-gwas/healthomics/pheweb/test_ethnic_v1/generated-by-pheweb/top_hits.tsv
+==> Completed in 0 seconds
+
+==> Starting `pheweb qq`
+Processing 8 phenos
+Completed    8 tasks in 3 seconds                                     
+==> Completed in 5 seconds
+
+==> Starting `pheweb phenotypes`
+wrote 8 phenotypes to /Users/minhtoo.lin/repos/nf-gwas/healthomics/pheweb/test_ethnic_v1/generated-by-pheweb/phenotypes.json
+wrote 8 phenotypes to /Users/minhtoo.lin/repos/nf-gwas/healthomics/pheweb/test_ethnic_v1/generated-by-pheweb/phenotypes.tsv
+==> Completed in 0 seconds
+
+==> Starting `pheweb pheno-correlation`
+==> Completed in 0 seconds

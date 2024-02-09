@@ -1,0 +1,62 @@
+{
+        "project": {
+                "description": "project"
+        },
+        "association_build": {
+                "description": "association_build"
+        },
+        "regenie_skip_predictions": {
+                "description": "regenie_skip_predictions"
+        },
+        "genotypes_association": {
+                "description": "genotypes_association"
+        },
+        "regenie_sample_file": {
+                "description": "regenie_sample_file"
+        },
+        "genotypes_association_format": {
+                "description": "genotypes_association_formats"
+        },
+        "phenotypes_filename": {
+                "description": "phenotypes_filename"
+        },
+        "phenotypes_binary_trait": {
+                "description": "phenotypes_binary_trait"
+        },
+        "phenotypes_columns": {
+                "description": "phenotypes_columns"
+        },
+        "regenie_run_gene_based_tests": {
+                "description": "regenie_run_gene_based_tests"
+        },
+        "regenie_gene_anno": {
+                "description": "regenie_gene_anno"
+        },
+        "regenie_gene_setlist": {
+                "description": "regenie_gene_setlist"
+        },
+        "regenie_gene_masks": {
+                "description": "regenie_gene_masks"
+        },
+        "regenie_gene_test": {
+                "description": "regenie_gene_test"
+        },
+        "regenie_gene_aaf": {
+                "description": "regenie_gene_aaf"
+        },
+        "regenie_gene_vc_max_aaf": {
+                "description": "regenie_gene_vc_max_aaf"
+        },
+        "regenie_gene_vc_mac_thr": {
+                "description": "regenie_gene_vc_mac_thr"
+        },
+        "regenie_gene_build_mask": {
+                "description": "regenie_gene_build_mask"
+        },
+        "regenie_write_bed_masks": {
+                "description": "regenie_write_bed_masks"
+        },
+        "rsids_filename": {
+                "description": "rsids_filename"
+        }
+}

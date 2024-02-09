@@ -1,0 +1,12 @@
+{
+        "project": "big_data_example_1",
+        "genotypes_association" : "s3://precise-nf-gwas/big_data/example_bigger.vcf.gz",
+        "genotypes_build": "hg19",
+        "genotypes_association_format": "vcf",
+        "phenotypes_filename": "s3://precise-nf-gwas/big_data/phenotype_biggest_1.txt",
+        "phenotypes_binary_trait": false,
+        "phenotypes_columns" : "Y1,Y2,Y3,Y4,Y5",
+        "regenie_test": "additive",
+        "rsids_filename": "s3://precise-nf-gwas/big_data/rsids_big.tsv.gz",
+        "regenie_skip_predictions": true
+    }

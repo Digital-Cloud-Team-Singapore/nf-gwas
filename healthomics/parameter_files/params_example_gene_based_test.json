@@ -1,0 +1,23 @@
+{
+    "project": "test-gwas-gene-based-test",
+    "association_build": "hg19",
+    "regenie_skip_predictions": true,
+    "genotypes_association": "s3://precise-nf-gwas/test_data/gene_based_tests_regenie/example_3chr.bgen",
+    "regenie_sample_file": "s3://precise-nf-gwas/test_data/gene_based_tests_regenie/example_3chr.sample",
+    "genotypes_association_format": "bgen",
+    "phenotypes_filename": "s3://precise-nf-gwas/test_data/gene_based_tests_regenie/phenotype_bin.txt",
+    "phenotypes_binary_trait": true,
+    "phenotypes_columns" : "Y1,Y2",
+    "regenie_run_gene_based_tests": true,
+    "regenie_gene_anno": "s3://precise-nf-gwas/test_data/gene_based_tests_regenie/example_3chr.annotations",
+    "regenie_gene_setlist": "s3://precise-nf-gwas/test_data/gene_based_tests_regenie/example_3chr.setlist",
+    "regenie_gene_masks": "s3://precise-nf-gwas/test_data/gene_based_tests_regenie/example_3chr.masks",
+    "regenie_gene_test": "skat",
+    "regenie_gene_aaf": 0.01,
+    "regenie_gene_vc_max_aaf": 100,
+    "regenie_gene_vc_mac_thr": 10,
+    "regenie_gene_build_mask": "max",
+    "regenie_write_bed_masks": true,
+    "rsids_filename": "s3://precise-nf-gwas/test_data/test_gwas_additive_chunking/rsids.tsv.gz"
+}
+

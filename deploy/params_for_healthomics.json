@@ -1,0 +1,5 @@
+{
+    "workflow_id": 8912698,
+    "run_name": "gene_based_test_v1",
+    "s3_output_uri": "s3://precise-nf-gwas/output/gene_based_test_v1/"
+}

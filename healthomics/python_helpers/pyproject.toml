@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "aws"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+boto3 = "^1.34.25"
+bokeh = "2.4.3"
+pandas = "^2.2.0"
+requests = "^2.31.0"
+jupyter = "^1.0.0"
+tqdm = "^4.66.1"
+# specifying pheweb via github link to master branch doesn't work for some reason?
+# poetry installs it but can't run "pheweb" via the CLI
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

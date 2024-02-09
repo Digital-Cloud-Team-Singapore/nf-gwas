@@ -26,10 +26,13 @@ workflow NF_GWAS {
         println ANSI_YELLOW + "WARN: Option genotypes_imputed_format is deprecated. Please use genotypes_association_format instead." + ANSI_RESET
     } 
 
-    def genotypes_prediction = params.genotypes_prediction
+    // def genotypes_prediction = params.genotypes_prediction
+    def genotypes_prediction_bed = params.genotypes_prediction_bed
+    def genotypes_prediction_bim = params.genotypes_prediction_bim
+    def genotypes_prediction_fam = params.genotypes_prediction_fam
     if(params.genotypes_array){
-        genotypes_prediction = params.genotypes_array
-        println ANSI_YELLOW +  "WARN: Option genotypes_array is deprecated. Please use genotypes_prediction instead." + ANSI_RESET
+        println ANSI_RESET +  "ERROR: Option genotypes_array is deprecated. Please use genotypes_prediction instead." + ANSI_RESET
+        exit 1
     }
 
     def association_build = params.association_build
@@ -55,10 +58,21 @@ workflow NF_GWAS {
 
     }
 
-    genotyped_plink_ch = Channel.empty()
+    // genotyped_plink_ch = Channel.empty()
+    genotyped_plink_file_bed = file("/")
+    genotyped_plink_file_bim = file("/")
+    genotyped_plink_file_fam = file("/")
     if(!skip_predictions) {
-        
-        genotyped_plink_ch = Channel.fromFilePairs(genotypes_prediction, size: 3, checkIfExists: true)
+        // problematic, assumes input has {} that needs to be expanded + * globbed
+        // this is most likely incompatible with AWS S3
+        // esp since it tries to verify the existence of these files
+        // genotyped_plink_ch = Channel.fromFilePairs(genotypes_prediction, size: 3, checkIfExists: true)
+        // now we only expect a .bed file path as genotypes_prediction
+        // genotyped_plink_ch = Channel.fromPath(genotypes_prediction, checkIfExists: true)
+        genotyped_plink_file_bed = file(genotypes_prediction_bed, checkIfExists: true)
+        genotyped_plink_file_bim = file(genotypes_prediction_bim, checkIfExists: true)
+        genotyped_plink_file_fam = file(genotypes_prediction_fam, checkIfExists: true)
+        // TODO: convert these into channel.fromPath() maybe it will fix hanging issue
 
     }
 
@@ -74,7 +88,9 @@ workflow NF_GWAS {
             imputed_files_ch,
             phenotypes_file,
             covariates_file,
-            genotyped_plink_ch,
+            genotyped_plink_file_bed,
+            genotyped_plink_file_bim,
+            genotyped_plink_file_fam,
             association_build,
             genotypes_association_format,
             condition_list_file,
@@ -83,12 +99,13 @@ workflow NF_GWAS {
         )
 
     } else {
-        
         GENE_BASED_TESTS(
             imputed_files_ch,
             phenotypes_file,
             covariates_file,
-            genotyped_plink_ch,
+            genotyped_plink_file_bed,
+            genotyped_plink_file_bim,
+            genotyped_plink_file_fam,
             genotypes_association,
             association_build,
             genotypes_association_format,

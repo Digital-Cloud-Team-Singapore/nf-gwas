@@ -17,6 +17,8 @@ workflow REGENIE {
     skip_interaction
     gene_tests
 
+    // skip_interactions is actually skip_predictions in single_variants_test.nf
+
     main:
     regenie_step1_parsed_logs_ch = Channel.empty()
     regenie_step1_out_ch = Channel.of('/')
@@ -30,8 +32,8 @@ workflow REGENIE {
             condition_list_file.collect().ifEmpty([])
         )
 
-    regenie_step1_out_ch = REGENIE_STEP1.out.regenie_step1_out_ch
-    regenie_step1_parsed_logs_ch = REGENIE_STEP1.out.regenie_step1_parsed_logs_ch
+        regenie_step1_out_ch = REGENIE_STEP1.out.regenie_step1_out_ch
+        regenie_step1_parsed_logs_ch = REGENIE_STEP1.out.regenie_step1_parsed_logs_ch
     } 
     
     if(!gene_tests) {

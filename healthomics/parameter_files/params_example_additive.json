@@ -1,0 +1,16 @@
+{
+    "project": "test_additive_bothsteps_40kvariants_100ksamples",
+    "genotypes_prediction_bed": "s3://precise-nf-gwas/big_data/example_big.bed",
+    "genotypes_prediction_bim": "s3://precise-nf-gwas/big_data/example_big.bim",
+    "genotypes_prediction_fam": "s3://precise-nf-gwas/big_data/example_big.fam",
+    "genotypes_association" : "s3://precise-nf-gwas/big_data/example_big.vcf.gz",
+    "genotypes_build": "hg19",
+    "genotypes_association_format": "vcf",
+    "phenotypes_filename": "s3://precise-nf-gwas/big_data/phenotype_100k_3cols_0.txt",
+    "phenotypes_binary_trait": false,
+    "phenotypes_columns" : "Y1,Y2,Y3",
+    "regenie_test": "additive",
+    "rsids_filename": "s3://precise-nf-gwas/big_data/rsids_big.tsv.gz",
+    "annotation_min_log10p": 2,
+    "qc_hwe": "0"
+}

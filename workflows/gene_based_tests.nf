@@ -15,7 +15,9 @@ workflow GENE_BASED_TESTS {
     imputed_files_ch
     phenotypes_file
     covariates_file
-    genotyped_plink_ch
+    genotyped_plink_file_bed
+    genotyped_plink_file_bim
+    genotyped_plink_file_fam
     genotypes_association
     association_build
     genotypes_association_format
@@ -66,7 +68,11 @@ workflow GENE_BASED_TESTS {
    
     if (!skip_predictions) {
 
-        QUALITY_CONTROL(genotyped_plink_ch)
+        QUALITY_CONTROL(
+            genotyped_plink_file_bed,
+            genotyped_plink_file_bim,
+            genotyped_plink_file_fam
+        )
         genotyped_final_ch = QUALITY_CONTROL.out.genotyped_filtered_files_ch
         genotyped_filtered_snplist_ch = QUALITY_CONTROL.out.genotyped_filtered_snplist_ch
         genotyped_filtered_id_ch = QUALITY_CONTROL.out.genotyped_filtered_id_ch

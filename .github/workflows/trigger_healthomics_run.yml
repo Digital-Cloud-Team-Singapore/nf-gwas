@@ -1,0 +1,57 @@
+name: Trigger Healthomics run
+
+on:
+  push
+
+env:
+  AWS_REGION : "ap-southeast-1"
+
+# permission can be added at job level or workflow level
+permissions:
+  id-token: write   # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/production'
+    steps:
+      # this is needed to find JSON files committed in repo
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: configure aws credentials with OICD
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: arn:aws:iam::549164395270:role/github-actions-admin-role
+          role-session-name: github_ci_trigger_healthomics
+          aws-region: ${{ env.AWS_REGION }}
+      - name:  trigger healthomics run
+        run: |
+          # prepare paths
+          CLI_ARGS_JSON_PATH="${{ github.workspace }}/deploy/params_for_healthomics.json"
+          RUN_PARAMS_JSON_PATH="${{ github.workspace }}/deploy/params_for_nextflow.json"
+
+          # parse args
+          WORKFLOW_ID=$(jq -r '.workflow_id' ${CLI_ARGS_JSON_PATH})
+          RUN_NAME=$(jq -r '.run_name' ${CLI_ARGS_JSON_PATH})
+          S3_OUTPUT_URI=$(jq -r '.s3_output_uri' ${CLI_ARGS_JSON_PATH})
+          
+          # logging
+          echo "Workflow ID: ${WORKFLOW_ID}"
+          echo "Run Name: ${RUN_NAME}"
+          echo "S3 Output URI: ${S3_OUTPUT_URI}"
+
+          # run the aws CLI, ensure no whitespace after each \
+          RUN_ID=$(aws omics start-run \
+            --name ${RUN_NAME} \
+            --workflow-id ${WORKFLOW_ID} \
+            --parameters file://${RUN_PARAMS_JSON_PATH} \
+            --output-uri ${S3_OUTPUT_URI} \
+            --role-arn arn:aws:iam::549164395270:role/omics_start_run_role_v1 | jq -r '.id')
+          
+          # check status of run
+          if [ -z "${RUN_ID}" ]; then
+            echo "Trigger run fail!"
+            exit 1
+          fi
+          echo "Trigger run success, run ID: ${RUN_ID}"

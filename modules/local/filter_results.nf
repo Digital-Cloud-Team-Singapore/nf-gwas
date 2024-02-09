@@ -9,6 +9,10 @@ process FILTER_RESULTS {
     output:
     tuple val(phenotype), path("${phenotype}.regenie.filtered.gz"), emit: results_filtered
 
+    // https://github.com/genepi/genomic-utils/blob/main/src/main/java/genepi/genomic/utils/commands/csv/CsvFilterCommand.java
+    // removes rows where value of --filter-column < value of --limit
+    // removes rows where value of --filter-column is in --ignore-list (not used below)
+    // e.g. removes rows where LOG10P is below 7.3 (association is not strong enough)
     """
     java -jar /opt/genomic-utils.jar csv-filter \
         --separator '\t' \
