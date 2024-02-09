@@ -13,7 +13,8 @@ pandas = "^2.2.0"
 requests = "^2.31.0"
 jupyter = "^1.0.0"
 tqdm = "^4.66.1"
-
+# specifying pheweb via github link to master branch doesn't work for some reason?
+# poetry installs it but can't run "pheweb" via the CLI
 
 [build-system]
 requires = ["poetry-core"]

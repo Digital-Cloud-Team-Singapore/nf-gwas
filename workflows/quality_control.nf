@@ -3,12 +3,16 @@ include { QC_FILTER_GENOTYPED } from '../modules/local/qc_filter_genotyped'
 workflow QUALITY_CONTROL {
 
     take:
-    genotyped_plink_ch    
+    genotyped_plink_file_bed
+    genotyped_plink_file_bim
+    genotyped_plink_file_fam
     
     main:
 
     QC_FILTER_GENOTYPED (
-        genotyped_plink_ch
+        genotyped_plink_file_bed,
+        genotyped_plink_file_bim,
+        genotyped_plink_file_fam
     )
 
     emit: 
