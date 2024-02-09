@@ -1,0 +1,50 @@
+[
+    {
+     "assoc_files": [
+      "/Users/minhtoo.lin/repos/nf-gwas/healthomics/pheweb/test_ethnic_v1/results/blood_pressure_RS1711.regenie.gz"
+     ],
+     "phenocode": "blood_pressure_RS1711"
+    },
+    {
+     "assoc_files": [
+      "/Users/minhtoo.lin/repos/nf-gwas/healthomics/pheweb/test_ethnic_v1/results/cancer_susceptibility_TP54.regenie.gz"
+     ],
+     "phenocode": "cancer_susceptibility_TP54"
+    },
+    {
+     "assoc_files": [
+      "/Users/minhtoo.lin/repos/nf-gwas/healthomics/pheweb/test_ethnic_v1/results/circadian_rhythm_PER2.regenie.gz"
+     ],
+     "phenocode": "circadian_rhythm_PER2"
+    },
+    {
+     "assoc_files": [
+      "/Users/minhtoo.lin/repos/nf-gwas/healthomics/pheweb/test_ethnic_v1/results/cognitive_performance_NTRK1.regenie.gz"
+     ],
+     "phenocode": "cognitive_performance_NTRK1"
+    },
+    {
+     "assoc_files": [
+      "/Users/minhtoo.lin/repos/nf-gwas/healthomics/pheweb/test_ethnic_v1/results/diabetes_susceptibility_TCF7L3.regenie.gz"
+     ],
+     "phenocode": "diabetes_susceptibility_TCF7L3"
+    },
+    {
+     "assoc_files": [
+      "/Users/minhtoo.lin/repos/nf-gwas/healthomics/pheweb/test_ethnic_v1/results/diabetes_susceptibility_TCF7L4.regenie.gz"
+     ],
+     "phenocode": "diabetes_susceptibility_TCF7L4"
+    },
+    {
+     "assoc_files": [
+      "/Users/minhtoo.lin/repos/nf-gwas/healthomics/pheweb/test_ethnic_v1/results/facial_morphology_AXIN2.regenie.gz"
+     ],
+     "phenocode": "facial_morphology_AXIN2"
+    },
+    {
+     "assoc_files": [
+      "/Users/minhtoo.lin/repos/nf-gwas/healthomics/pheweb/test_ethnic_v1/results/leptin_resistance_A829C.regenie.gz"
+     ],
+     "phenocode": "leptin_resistance_A829C"
+    }
+   ]
